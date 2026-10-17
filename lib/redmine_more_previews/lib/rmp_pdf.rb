@@ -51,7 +51,7 @@ module RedmineMorePreviews
           if File.exist?(imgpath)
             atta = Attachment.create(
               :file           =>File.open(imgpath),
-              :filename       =>imgfile, 
+              :filename       =>imgfile,
               :author         =>User.current
             )
             buf  = "<p>random image <img src='#{imgfile}'></p>"

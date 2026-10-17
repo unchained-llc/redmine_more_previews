@@ -103,6 +103,19 @@ to install necessary gems. Install LibreOfiice (for Libre) and/or Pandoc for (fo
 
 `sudo /etc/init.d/apache2 restart`
 
+### Spreadsheet PDF previews
+
+Libre exports spreadsheet PDFs with `calc_pdf_Export` and `SinglePageSheets`:
+each sheet becomes one page sized to its contents, rather than being split across
+print-sized pages. This applies to supported Excel, OpenDocument Calc,
+legacy Calc and CSV inputs when PDF output is selected. Other conversion formats,
+Word/PowerPoint documents and native PDF attachments keep their previous behavior.
+
+Whole-sheet export ignores the workbook's print sizes, scaling and print ranges.
+LibreOffice also exports hidden sheets in this mode; they are included in the
+preview. The original attachment is never modified. A LibreOffice version supporting
+JSON PDF export options is required.
+
 ### Uninstall
 
 1. go to plugins folder, delete plugin folder redmine_attachment_categories

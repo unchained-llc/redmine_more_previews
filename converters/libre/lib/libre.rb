@@ -44,11 +44,22 @@ class Libre < RedmineMorePreviews::Conversion
   end #def
   
   def soffice( src, user_installation )
+    export_format = shell_quote(pdf_export_format(src))
     if Redmine::Platform.mswin?
-    "#{LIBRE_OFFICE_BIN} --headless --convert-to #{preview_format} --outdir #{shell_quote tmpdir} #{shell_quote src}"
+    "#{LIBRE_OFFICE_BIN} --headless --convert-to #{export_format} --outdir #{shell_quote tmpdir} #{shell_quote src}"
     else
-    "#{LIBRE_OFFICE_BIN} --headless --convert-to #{preview_format} --outdir #{shell_quote tmpdir} -env:UserInstallation=file://#{user_installation} #{shell_quote src}"
+    "#{LIBRE_OFFICE_BIN} --headless --convert-to #{export_format} --outdir #{shell_quote tmpdir} -env:UserInstallation=file://#{user_installation} #{shell_quote src}"
     end
   end #def
   
+  # Whole-sheet export is for spreadsheet PDF previews only. Keep Writer,
+  # Impress and other output formats on LibreOffice's existing defaults.
+  def pdf_export_format(src)
+    if preview_format == "pdf" && RedmineMorePreviews::SpreadsheetPreview.spreadsheet?(src)
+      'pdf:calc_pdf_Export:{"SinglePageSheets":{"type":"boolean","value":"true"}}'
+    else
+      preview_format
+    end
+  end
+
 end #class

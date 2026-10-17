@@ -35,7 +35,7 @@ module RedmineMorePreviews
                 content_tag(
                   :object,
                   tag(:embed, :href => path, :type => options[:type]),
-                  { :style   => "position:absolute;top:0;left:0;width:95%;height:100%;",
+                  { :style   => "position:absolute;top:0;left:0;width:100%;height:100%;",
                     :title   => filename,
                     :type    => options[:type],
                     :data    => path,
@@ -51,7 +51,7 @@ module RedmineMorePreviews
                 content_tag(
                   :iframe,
                   "",
-                  { :style                => "position:absolute;top:0;left:0;width:95%;height:16px;",
+                  { :style                => "position:absolute;top:0;left:0;width:100%;height:16px;",
                     :seamless             => "seamless",
                     :scrolling            => "no",
                     :frameborder          => "0",
