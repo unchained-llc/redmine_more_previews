@@ -30,6 +30,7 @@ module RedmineMorePreviews
           #unloadable
           
           prepend ClassMethods
+          accept_api_auth(*(accept_api_auth + [:more_preview]).uniq)
           
           alias_method  :find_attachment_for_more_preview, :find_attachment
           alias_method  :read_authorize_for_more_preview,  :read_authorize
